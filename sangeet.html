@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prinsa Marriage - Sagay Video</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #333, #555);
+        }
+
+        /* Background Slideshow */
+        .background-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .background-slideshow div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: slideShow 12s infinite;
+        }
+        .background-slideshow div:nth-child(1) { background-image: url('p2.jpg'); animation-delay: 0s; }
+        .background-slideshow div:nth-child(2) { background-image: url('p3.jpg'); animation-delay: 4s; }
+        .background-slideshow div:nth-child(3) { background-image: url('p4.jpeg'); animation-delay: 8s; }
+
+        @keyframes slideShow {
+            0%, 33% { opacity: 1; }
+            40%, 100% { opacity: 0; }
+        }
+
+        /* Content Styling */
+        .content {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 36px;
+            margin: 10px 0;
+            color: #FFD700;
+        }
+
+        /* Video Card Layout */
+        .video-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        .video-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .video-title {
+            color: #FFD700;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .play-icon {
+            font-size: 50px;
+            color: #FF5733;
+            opacity: 0.8;
+            transition: color 0.3s;
+        }
+        .video-card:hover .play-icon {
+            color: #C70039;
+        }
+
+        /* Popup Player */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            position: relative;
+            background: #000;
+            padding: 20px;
+            max-width: 90%;
+            width: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #FFF;
+            font-size: 20px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-slideshow">
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="content">
+        <h1>Prinsa Marriage - Sagay Video</h1>
+        <div class="video-card" id="sagayVideoCard">
+            <i class="play-icon">&#9658;</i>
+            <p class="video-title">Watch Sagay Video</p>
+        </div>
+    </div>
+
+    <!-- Popup Player -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <button class="close-button" id="closeButton">&#10005;</button>
+            <video id="popupVideo" controls width="100%">
+                <source src="video02.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        // Open video player in popup
+        document.getElementById('sagayVideoCard').addEventListener('click', function() {
+            document.getElementById('popupOverlay').style.display = 'flex';
+            document.getElementById('popupVideo').play();
+        });
+
+        // Close video player
+        document.getElementById('closeButton').addEventListener('click', function() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.getElementById('popupVideo').pause();
+        });
+    </script>
+</body>
+</html>
